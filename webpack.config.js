@@ -4,6 +4,7 @@ const MiniCssExtractPlugin      = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin   = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin         = require('copy-webpack-plugin');
 const ImageminPlugin            = require('imagemin-webpack-plugin').default;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     // base source path
@@ -34,6 +35,9 @@ module.exports = {
 
     // connect other plugins
     plugins: [
+        new HtmlWebpackPlugin({
+            template: 'template.html'
+        }),
         new MiniCssExtractPlugin({filename: "./css/[name].css"}),
         new CopyWebpackPlugin([{from: './img/static/', to: './img/static/'}]),
         new ImageminPlugin({ test: /\.(jpe?g|png|gif)$/i }),
